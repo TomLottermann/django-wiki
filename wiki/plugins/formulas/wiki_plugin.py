@@ -12,17 +12,9 @@ from wiki.plugins.formulas.mdx.mdx_mathjax import MathJaxExtension
 class FormulaPlugin(BasePlugin):
     
     slug = settings.SLUG
-    # sidebar = {
-    #     'headline': _('Images'),
-    #     'icon_class': 'icon-picture',
-    #     'template': 'wiki/plugins/images/sidebar.html',
-    #     'form_class': forms.SidebarForm,
-    #     'get_form_kwargs': (lambda a: {'instance': models.Image(article=a)})
-    # }
     
     class RenderMedia:
         js = [
-            'wiki/mathjax/markdownConfig.js',
             'wiki/mathjax/MathJax.js?config=default',
         ]
     
