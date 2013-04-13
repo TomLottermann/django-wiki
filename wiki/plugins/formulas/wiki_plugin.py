@@ -20,15 +20,11 @@ class FormulaPlugin(BasePlugin):
     #     'get_form_kwargs': (lambda a: {'instance': models.Image(article=a)})
     # }
     
-    # class RenderMedia:
-    #     js = [
-    #         'wiki/colorbox/colorbox/jquery.colorbox-min.js',
-    #         'wiki/js/images.js',
-    #     ]
-        
-    #     css = {
-    #         'screen': 'wiki/colorbox/example1/colorbox.css'
-    #     }
+    class RenderMedia:
+        js = [
+            'wiki/mathjax/markdownConfig.js',
+            'wiki/mathjax/MathJax.js',
+        ]
     
     markdown_extensions = [MathJaxExtension()]
     
