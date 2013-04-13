@@ -15,7 +15,7 @@ class FormulaPlugin(BasePlugin):
     
     class RenderMedia:
         js = [
-            'wiki/mathjax/MathJax.js?config=default',
+            'wiki/mathjax/MathJax.js?config=config',
         ]
     
     markdown_extensions = [MathJaxExtension()]
