@@ -16,7 +16,7 @@ class MathJaxExtension(Extension):
         """ Add MathJaxPreprocessor to the Markdown instance. """
         md.registerExtension(self)
 
-        md.preprocessors.add('fenced_code_block',
+        md.preprocessors.add('mathjax_block',
                                  MathJaxPreprocessor(md),
                                  "_begin")
 
@@ -30,11 +30,7 @@ class MathJaxPreprocessor(Preprocessor):
         while 1:
             m = MATHJAX_PATTERN_RE.search(text)
             if m:
-                formula = ''
-                if m.group('formula'):
-                    formula = m.group('formula')
-
-                forumla = CLEAN_WRAP % self._escape(formula)
+                forumla = self._escape(text[m.start():m.end()])
 
                 # Mark formula as save
                 placeholder = self.markdown.htmlStash.store(forumla, safe=True)
