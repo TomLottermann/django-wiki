@@ -17,17 +17,6 @@ MathJax.Hub.Config({
   jax: ["input/TeX","output/HTML-CSS"],
 
   tex2jax: {
-    //
-    //  The delimiters that surround in-line math expressions.  The first in each
-    //  pair is the initial delimiter and the second is the terminal delimiter.
-    //  Comment out any that you don't want, but be sure there is no extra
-    //  comma at the end of the last item in the list -- some browsers won't
-    //  be able to handle that.
-    //
-    inlineMath: [
-      ['$$','$$'],
-//      ['\\(','\\)']
-    ],
 
     //
     //  The delimiters that surround displayed math expressions.  The first in each
@@ -39,7 +28,21 @@ MathJax.Hub.Config({
     displayMath: [
       ['$$$','$$$'],
 //      ['\\[','\\]']
+    ],
+
+    //
+    //  The delimiters that surround in-line math expressions.  The first in each
+    //  pair is the initial delimiter and the second is the terminal delimiter.
+    //  Comment out any that you don't want, but be sure there is no extra
+    //  comma at the end of the last item in the list -- some browsers won't
+    //  be able to handle that.
+    //
+    inlineMath: [
+      ['$$','$$'],
+//      ['\\(','\\)']
     ]
+
+
   }
 });
 

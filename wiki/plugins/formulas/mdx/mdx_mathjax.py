@@ -2,13 +2,19 @@ from markdown import Extension
 from markdown.preprocessors import Preprocessor
 import re
 
+import logging
+
 # Global vars
 MATHJAX_PATTERN_RE = re.compile( \
-    r'(?P<fence>^\${2,})[ ]*(?P<formula>.*?)[ ]*(?P=fence)$',
+    r'(?P<nli>^\n?)\s*(?P<fence>\${2,})\s*(?P<formula>.*?)\s*(?P=fence)\s*?(?P<nlb>\n?)',
     re.MULTILINE|re.DOTALL
     )
 
-CLEAN_WRAP = '$$%s$$'
+CLEAN_MULTILINE_WRAP = '$$$%s$$$'
+
+CLEAN_INLINE_WRAP = '$$%s$$'
+
+logger = logging.getLogger(__name__)
 
 class MathJaxExtension(Extension):
 
@@ -24,19 +30,27 @@ class MathJaxExtension(Extension):
 class MathJaxPreprocessor(Preprocessor):
 
     def run(self, lines):
-        """ Match and store Fenced Formula Blocks in the HtmlStash. """
-
+        """ Match and store Fenced Formula Blocks in the HtmlStash.
+        Makes sure to make a difference between inline and multiline formulas. """
         text = "\n".join(lines)
         while 1:
             m = MATHJAX_PATTERN_RE.search(text)
             if m:
-                forumla = self._escape(text[m.start():m.end()])
+                formula = self._escape(m.group('formula'))
+                nli = m.group('nli')
+                nlb = m.group('nlb')
+
+                if not (nli == '' or nlb == ''):
+                    wrapped_formula = CLEAN_MULTILINE_WRAP % (formula, )
+                else:
+                    wrapped_formula = CLEAN_INLINE_WRAP % (formula, )
 
                 # Mark formula as save
-                placeholder = self.markdown.htmlStash.store(forumla, safe=True)
-                text = '%s%s%s'% (text[:m.start()], placeholder, text[m.end():])
+                placeholder = self.markdown.htmlStash.store(wrapped_formula, safe=True)
+                text = '%s%s%s%s%s'% (text[:m.start()], nli, placeholder, nlb, text[m.end():])
             else:
                 break
+
         return text.split("\n")
 
     def _escape(self, txt):
