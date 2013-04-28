@@ -26,8 +26,7 @@ MathJax.Hub.Config({
     //  be able to handle that.
     //
     displayMath: [
-      ['$$$','$$$'],
-//      ['\\[','\\]']
+      ['$$$$','$$$$']
     ],
 
     //
@@ -38,8 +37,7 @@ MathJax.Hub.Config({
     //  be able to handle that.
     //
     inlineMath: [
-      ['$$','$$'],
-//      ['\\(','\\)']
+      ['$$$','$$$']
     ]
 
 

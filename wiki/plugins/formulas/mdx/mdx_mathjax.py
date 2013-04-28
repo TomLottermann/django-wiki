@@ -5,14 +5,16 @@ import re
 import logging
 
 # Global vars
+
+# this regex looks for characters before or after the $$ $$ wrapping. If there is one: it is an inline formula!
 MATHJAX_PATTERN_RE = re.compile( \
-    r'(?P<nli>^\n?)\s*(?P<fence>\${2,})\s*(?P<formula>.*?)\s*(?P=fence)\s*?(?P<nlb>\n?)',
+    r'(?P<start_char>\S)?(?P<start_whitespace>[^\S\r\n]*)(?P<fence>\${2,})\s*(?P<formula>.*?)\s*(?P=fence)(?P<end_whitespace>[^\S\r\n]*)(?P<end_char>\S)?',
     re.MULTILINE|re.DOTALL
     )
 
-CLEAN_MULTILINE_WRAP = '$$$%s$$$'
+CLEAN_MULTILINE_WRAP = '$$$$%s$$$$'
 
-CLEAN_INLINE_WRAP = '$$%s$$'
+CLEAN_INLINE_WRAP = '$$$%s$$$'
 
 logger = logging.getLogger(__name__)
 
@@ -37,17 +39,22 @@ class MathJaxPreprocessor(Preprocessor):
             m = MATHJAX_PATTERN_RE.search(text)
             if m:
                 formula = self._escape(m.group('formula'))
-                nli = m.group('nli')
-                nlb = m.group('nlb')
 
-                if not (nli == '' or nlb == ''):
-                    wrapped_formula = CLEAN_MULTILINE_WRAP % (formula, )
-                else:
+                start_char = m.group('start_char')
+                start_whitespace = m.group('start_whitespace')
+                end_whitespace = m.group('end_whitespace')
+                end_char = m.group('end_char')
+
+                if start_char != None or end_char != None:
                     wrapped_formula = CLEAN_INLINE_WRAP % (formula, )
+                else:
+                    wrapped_formula = CLEAN_MULTILINE_WRAP % (formula, )
+
+                #print repr(nli) + '::::' + repr(wrapped_formula) + '::::' + repr(nlb)
 
                 # Mark formula as save
                 placeholder = self.markdown.htmlStash.store(wrapped_formula, safe=True)
-                text = '%s%s%s%s%s'% (text[:m.start()], nli, placeholder, nlb, text[m.end():])
+                text = '%s%s%s%s%s%s%s'% (text[:m.start()], start_char or '', start_whitespace, placeholder, end_whitespace, end_char or '', text[m.end():])
             else:
                 break
 

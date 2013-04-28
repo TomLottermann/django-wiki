@@ -23,7 +23,7 @@ insertAtCaret: function(myValue){
       this.focus();
     }
   })
-}
+},
 
 wrapSelection: function(openWrap, closeWrap){
   return this.each(function(i) {
@@ -42,7 +42,7 @@ wrapSelection: function(openWrap, closeWrap){
       this.value = this.value.substring(0, startPos) + openWrap + this.value.substring(startPos,endPos) + closeWrap + this.value.substring(endPos,this.value.length);
       this.focus();
       this.selectionStart = startPos + openWrap.length;
-      this.selectionEnd = endPos - closeWrap.length;
+      this.selectionEnd = endPos + openWrap.length;
       this.scrollTop = scrollTop;
     } else {
       this.value += openWrap + closeWrap;

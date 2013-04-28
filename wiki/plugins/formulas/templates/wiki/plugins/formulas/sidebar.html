@@ -20,14 +20,14 @@ $$
 
 <p>
   <label>{% trans "Create formula in editor" %}</label>
-  <button type="button" class="btn" onclick="wikiInsertLink()">
+  <button type="button" class="btn" onclick="wikiWrapFormula()">
     {% trans "Create" %}
   </button>
 </p>
 
 {% addtoblock "js" %}
 <script type="text/javascript">
-function wikiInsertLink() {
+function wikiWrapFormula() {
   $('#id_content').wrapSelection('$$ ', ' $$');
 }
 </script>
