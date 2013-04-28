@@ -12,6 +12,12 @@ from wiki.plugins.formulas.mdx.mdx_mathjax import MathJaxExtension
 class FormulaPlugin(BasePlugin):
     
     slug = settings.SLUG
+
+    sidebar = {'headline': _('Formulas'),
+               'icon_class': 'icon-resize-horizontal',
+               'template': 'wiki/plugins/formulas/sidebar.html',
+               'form_class': None,
+               'get_form_kwargs': (lambda a: {})}
     
     class RenderMedia:
         js = [
