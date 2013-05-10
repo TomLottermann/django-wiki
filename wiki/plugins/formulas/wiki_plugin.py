@@ -4,10 +4,9 @@ from django.utils.translation import ugettext as _
 
 from wiki.core.plugins import registry
 from wiki.core.plugins.base import BasePlugin
-from wiki.plugins.images import views, models, settings, forms
-from wiki.plugins.notifications.settings import ARTICLE_EDIT
-from wiki.plugins.notifications.util import truncate_title
+
 from wiki.plugins.formulas.mdx.mdx_mathjax import MathJaxExtension
+from wiki.plugins.formulas import settings
 
 class FormulaPlugin(BasePlugin):
     
