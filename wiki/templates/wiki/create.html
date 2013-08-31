@@ -1,5 +1,5 @@
 {% extends "wiki/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
+{% load wiki_tags i18n sekizai_tags crispy_forms_tags %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Add new article" %}{% endblock %}
@@ -47,7 +47,7 @@
   <h1 class="page-header">{% trans "Add new article" %}</h1>
   
   <form method="POST" class="form-horizontal">
-    {% wiki_form create_form %}
+    {{ create_form|crispy }}
     <div class="form-group form-actions">
       <div class="col-lg-2"></div>
       <div class="col-lg-10">

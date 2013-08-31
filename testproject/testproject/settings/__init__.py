@@ -103,6 +103,7 @@ INSTALLED_APPS = [
     'wiki.plugins.attachments',
     'wiki.plugins.notifications',
     'mptt',
+    'crispy_forms',
 ]
 
 # A sample logging configuration. The only tangible logging
