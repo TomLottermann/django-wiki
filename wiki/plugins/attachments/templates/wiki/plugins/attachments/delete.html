@@ -19,7 +19,7 @@
     {% endfor %}
   </ul>
 <hr />
-<form method="POST" class="form-horizontal" id="attachment_form" enctype="multipart/form-data">
+<form method="POST"  id="attachment_form" enctype="multipart/form-data">
   {{ form|crispy }}
   <div class="form-group form-actions">
     <div class="col-lg-2"></div>
@@ -43,7 +43,7 @@
     You can remove a reference to a file, but it will retain its references on other articles.
     {% endblocktrans %}
   </p>
-  <form method="POST" class="form-horizontal" id="attachment_form" enctype="multipart/form-data">
+  <form method="POST"  id="attachment_form" enctype="multipart/form-data">
   {{ form|crispy }}
   <div class="form-group form-actions">
     <div class="col-lg-2"></div>

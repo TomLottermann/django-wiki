@@ -11,7 +11,7 @@
   {% trans "Manage how often you receive notifications" %}
 </p>
 
-<form method="POST" class="form-horizontal">
+<form method="POST" >
   {% include "wiki/includes/formerrors.html" with form=formset.management_form %}
   {% csrf_token %}
   {{ formset.management_form }}

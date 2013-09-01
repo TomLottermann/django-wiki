@@ -38,7 +38,7 @@
     {% if not cannot_delete_children %}
     <p class="lead">{% trans "You are deleting an article. Please confirm." %}</p>
 
-    <form method="POST" class="form-horizontal">
+    <form method="POST" >
       {{ delete_form|crispy }}
       <div class="form-group form-actions">
         <div class="col-lg-2"></div>

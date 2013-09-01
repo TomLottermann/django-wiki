@@ -308,8 +308,8 @@ class PermissionsForm(PluginSettingsFormMixin, forms.ModelForm):
                                      help_text=_(u'Enter the username of the owner.'))
     group = forms.ModelChoiceField(models.Group.objects.all(), empty_label=_(u'(none)'),
                                      required=False)
-    if settings.USE_BOOTSTRAP_SELECT_WIDGET:
-        group.widget= SelectWidgetBootstrap()
+    #if settings.USE_BOOTSTRAP_SELECT_WIDGET:
+    #    group.widget= SelectWidgetBootstrap()
     
     recursive = forms.BooleanField(label=_(u'Inherit permissions'), help_text=_(u'Check here to apply the above permissions (excluding group and owner of the article) recursively to articles below this one.'),
                                    required=False)
