@@ -1,5 +1,5 @@
 {% extends "wiki/article.html" %}
-{% load wiki_tags i18n %}
+{% load crispy_forms_tags i18n %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Settings" %}: {{ article.current_revision.title }}{% endblock %}
@@ -9,7 +9,7 @@
   {% for form in forms %}
   <form method="POST" class="form-horizontal settings-form" action="?f={{form.action}}">
     <h3 class="page-header">{{ form.settings_form_headline }}</h2>
-    {% wiki_form form %}
+    {{ form|crispy }}
     <div class="form-group form-actions">
       <div class="col-lg-2"></div>
       <div class="col-lg-10">

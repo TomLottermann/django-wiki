@@ -1,5 +1,5 @@
 {% extends "wiki/article.html" %}
-{% load wiki_tags i18n humanize %}
+{% load crispy_forms_tags i18n humanize %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Replace" %} "{{ attachment.current_revision.get_filename }}"{% endblock %}
@@ -30,7 +30,7 @@
 {% endif %}
 
 <form method="POST" class="form-horizontal" id="attachment_form" enctype="multipart/form-data">
-  {% wiki_form form %}
+  {{ form|crispy }}
   <div class="form-group form-actions">
     <div class="col-lg-2"></div>
     <div class="col-lg-10">

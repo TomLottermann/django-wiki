@@ -1,5 +1,5 @@
 {% extends "wiki/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
+{% load crispy_forms_tags i18n sekizai_tags %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Delete article" %}{% endblock %}
@@ -39,7 +39,7 @@
     <p class="lead">{% trans "You are deleting an article. Please confirm." %}</p>
 
     <form method="POST" class="form-horizontal">
-      {% wiki_form delete_form %}
+      {{ delete_form|crispy }}
       <div class="form-group form-actions">
         <div class="col-lg-2"></div>
         <div class="col-lg-10">

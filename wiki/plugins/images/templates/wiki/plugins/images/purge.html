@@ -1,5 +1,5 @@
 {% extends "wiki/article.html" %}
-{% load wiki_tags i18n humanize wiki_thumbnails %}
+{% load crispy_forms_tags i18n humanize wiki_thumbnails %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Purge deletion" %}: {{ image }}{% endblock %}
@@ -14,7 +14,7 @@
     {% trans "Purge image: Completely remove image file and all revisions." %}
   </p>
   <form method="POST" class="form-horizontal" enctype="multipart/form-data">
-    {% wiki_form form %}
+    {{ form|crispy }}
     <div class="form-group form-actions">
       <div class="col-lg-2"></div>
       <div class="col-lg-10">

@@ -1,11 +1,11 @@
 {% extends "wiki/base.html" %}
-{% load i18n wiki_tags sekizai_tags %}
+{% load i18n crispy_forms_tags sekizai_tags %}
 {% block wiki_pagetitle %}{% trans "Sign up" %}{% endblock %}
 
 {% block wiki_contents %}
 <h1 class="page-header">{% trans "Sign up" %}</h1>
 <form method="POST" class="form-horizontal">
-{% wiki_form form %}
+{{ form|crispy }}
 <div class="form-group form-actions">
   <div class="col-lg-2"></div>
   <div class="col-lg-10">

@@ -1,5 +1,5 @@
 {% extends "wiki/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
+{% load wiki_tags i18n sekizai_tags crispy_forms_tags %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Article deleted" %}{% endblock %}
@@ -41,7 +41,7 @@
         <p>{% trans "You may remove this article and any children permanently and free their slugs by clicking the below button. This action cannot be undone." %}</p>
         <form method="POST" class="form form-inline">
           {% csrf_token %}
-          {% wiki_form purge_form %}
+          {{ purge_form|crispy }}
             <button class="btn btn-default">
               <span class="icon-remove"></span>
               {% trans "Purge" %}

@@ -1,7 +1,7 @@
-{% load wiki_tags i18n sekizai_tags %}
+{% load crispy_forms_tags i18n sekizai_tags %}
 {% include "wiki/includes/editormedia.html" %}
 
-{% wiki_form form %}
+{{ form|crispy }}
 {% addtoblock "js" %}
 <script language="javascript">
   $(document).ready(function() {

@@ -1,5 +1,5 @@
 {% extends "wiki/article.html" %}
-{% load wiki_tags i18n humanize %}
+{% load wiki_tags i18n humanize crispy_forms_tags %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Attachments" %}: {{ article.current_revision.title }}{% endblock %}
@@ -81,7 +81,7 @@
               {% include "wiki/includes/anonymous_blocked.html" %}
             {% else %}
             <form method="POST" class="form-vertical" id="attachment_form" enctype="multipart/form-data">
-              {% wiki_form form %}
+              {{ form|crispy }}
               <button type="submit" name="save" value="1" class="btn btn-primary">
                 {% trans "Upload file" %}
               </button>
