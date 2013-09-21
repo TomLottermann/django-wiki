@@ -1,6 +1,6 @@
 {% load crispy_forms_tags i18n sekizai_tags %}
 {% include "wiki/includes/editormedia.html" %}
-
+{% csrf_token %}
 {{ form|crispy }}
 {% addtoblock "js" %}
 <script language="javascript">

@@ -26,7 +26,8 @@
 
   <h2 class="page-header">{% trans "Root article" %}</h2>
 
-  <form method="POST" >
+  <form method="POST">
+    {% csrf_token %}
     {{ form|crispy }}
     <div class="form-group form-actions">
       <div class="col-lg-2"></div>

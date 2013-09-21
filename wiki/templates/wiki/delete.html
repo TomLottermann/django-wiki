@@ -39,6 +39,7 @@
     <p class="lead">{% trans "You are deleting an article. Please confirm." %}</p>
 
     <form method="POST" >
+      {% csrf_token %}
       {{ delete_form|crispy }}
       <div class="form-group form-actions">
         <div class="col-lg-2"></div>

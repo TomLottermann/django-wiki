@@ -20,6 +20,7 @@
   </ul>
 <hr />
 <form method="POST"  id="attachment_form" enctype="multipart/form-data">
+  {% csrf_token %}
   {{ form|crispy }}
   <div class="form-group form-actions">
     <div class="col-lg-2"></div>
@@ -44,6 +45,7 @@
     {% endblocktrans %}
   </p>
   <form method="POST"  id="attachment_form" enctype="multipart/form-data">
+  {% csrf_token %}
   {{ form|crispy }}
   <div class="form-group form-actions">
     <div class="col-lg-2"></div>
